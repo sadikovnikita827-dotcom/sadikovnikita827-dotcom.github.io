@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Никита Садиков — портфолио</title>
+<style>
+:root{
+  --win:#ece9d8; --pane:#fff; --txt:#000; --edge:#7f9db9; --tab:#fcfcfe;
+  --ui:Tahoma,Verdana,"DejaVu Sans",sans-serif; --mono:"Lucida Console","DejaVu Sans Mono",monospace;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--win:#3b3a36;--pane:#1d1d1d;--txt:#eee;--edge:#666;--tab:#4a4944}
+}
+:root[data-theme="dark"]{--win:#3b3a36;--pane:#1d1d1d;--txt:#eee;--edge:#666;--tab:#4a4944}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;height:100%;overflow:hidden;font:13px/1.45 var(--ui);color:var(--txt);background:#3a6ea5}
+.desk{position:relative;height:100%;overflow:hidden;
+  background:radial-gradient(ellipse 130% 50% at 25% 108%,#6bbf3a 0 58%,#3f8f22 59%,transparent 60%),
+             radial-gradient(ellipse 90% 40% at 90% 112%,#58aa2e 0 60%,transparent 61%),
+             linear-gradient(#1f5fd0,#5c9be6 45%,#bcdcf8 78%)}
+.cloud{position:absolute;background:#fff;border-radius:50px;opacity:.85;filter:blur(2px)}
+.icons{position:absolute;left:12px;top:12px;display:flex;flex-direction:column;gap:6px;z-index:1}
+.icons button{all:unset;cursor:pointer;width:84px;text-align:center;color:#fff;text-shadow:1px 1px 2px #000;padding:4px;font:12px/1.25 var(--ui);border:1px dotted transparent}
+.icons button:hover{background:rgba(49,106,197,.45)}
+.icons button:focus-visible{border-color:#fff}
+.icons i{display:block;font-style:normal;font-size:34px;line-height:40px}
+.hero{position:absolute;right:36px;bottom:70px;text-align:right;color:#fff;text-shadow:2px 2px 4px rgba(0,30,90,.7);z-index:0}
+.hero h1{margin:0;font:italic 700 clamp(34px,5vw,60px)/1.05 "Trebuchet MS",var(--ui)}
+.hero p{margin:6px 0 0;font:italic 18px/1.3 "Trebuchet MS",var(--ui)}
+
+.win{position:absolute;display:flex;flex-direction:column;background:var(--win);border:3px solid #0831d9;border-top:0;border-radius:9px 9px 0 0;box-shadow:3px 4px 14px rgba(0,0,0,.5);max-height:calc(100% - 52px);min-width:280px}
+.win.hidden{display:none}
+.win.max{left:0!important;top:0!important;width:100%!important;max-height:calc(100% - 36px);height:calc(100% - 36px);border-radius:0}
+.tb{display:flex;align-items:center;gap:6px;padding:4px 4px 4px 8px;border-radius:7px 7px 0 0;cursor:default;touch-action:none;user-select:none;
+  background:linear-gradient(#0997ff,#0053ee 8%,#0050ee 40%,#06f 88%,#06f 93%,#005bff 95%,#003dd7 96%,#003dd7)}
+.win.off .tb{background:linear-gradient(#7697e7,#7e9ee3 8%,#7a9ae0 40%,#8ba8e8 88%,#7a96df)}
+.tt{flex:1;color:#fff;font:700 13px/1 "Trebuchet MS",var(--ui);text-shadow:1px 1px #0a1f70;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bt{display:flex;gap:2px}
+.bt button{all:unset;cursor:pointer;width:22px;height:22px;text-align:center;line-height:20px;color:#fff;font:700 14px/20px var(--ui);border:1px solid #fff;border-radius:3px;background:linear-gradient(135deg,#3d8cff,#1c55d8)}
+.bt .x{background:linear-gradient(135deg,#e9866a,#c4331a)}
+.bt button:hover{filter:brightness(1.15)}
+.bt button:focus-visible{outline:2px dotted #fff}
+.bd{padding:12px;overflow:auto;flex:1}
+.pane{background:var(--pane);border:1px solid var(--edge);padding:10px 12px}
+.pane p{margin:0 0 .8em}.pane p:last-child{margin:0}
+.note{font:13px/1.55 var(--mono)}
+.fill{background:#ffff99;color:#222;border:1px dotted #aa8;padding:0 2px}
+
+.tabs{display:flex;gap:2px;margin-bottom:-1px;position:relative}
+.tabs button{all:unset;cursor:pointer;padding:4px 12px;border:1px solid var(--edge);border-bottom:0;border-radius:3px 3px 0 0;background:var(--win);font:12px var(--ui)}
+.tabs button[aria-selected=true]{background:var(--tab);padding-top:6px;margin-top:-2px;font-weight:700}
+.tabs button:focus-visible{outline:1px dotted currentColor}
+.tp{background:var(--tab);border:1px solid var(--edge);padding:12px 14px;min-height:130px}
+.tp[hidden]{display:none}
+.tp ul{margin:0;padding-left:18px}
+
+.addr{display:flex;gap:8px;align-items:center;margin-bottom:8px;font-size:12px}
+.addr span{flex:1;background:var(--pane);border:1px solid var(--edge);padding:2px 6px}
+.dlg{max-width:380px;margin:18px auto;background:var(--win);border:3px solid #0831d9;border-top:0;border-radius:7px 7px 0 0;box-shadow:2px 3px 8px rgba(0,0,0,.4)}
+.dlg .tb{padding:3px 6px}
+.dlg .in{display:flex;gap:14px;padding:16px}
+.dlg .ic{font-size:34px;line-height:1}
+.dlg p{margin:0 0 14px}
+.btn{all:unset;cursor:pointer;display:block;margin:0 auto;min-width:76px;text-align:center;padding:3px 10px;border:1px solid #003c74;border-radius:3px;background:linear-gradient(#fff,#ecebe5 85%,#d6d0c5);color:#000;font:12px var(--ui)}
+.btn:hover{box-shadow:inset 0 0 0 2px #f9b94a}
+.btn:focus-visible{outline:1px dotted #000;outline-offset:-4px}
+
+table{border-collapse:collapse;width:100%;background:var(--pane)}
+th,td{text-align:left;padding:4px 8px;border:1px solid var(--edge);vertical-align:top}
+th{background:linear-gradient(#fff,#ecebe5);color:#000;font-weight:400}
+.row{display:grid;grid-template-columns:76px 1fr;gap:6px;margin-bottom:8px;align-items:center}
+.row label{text-align:right}
+.pane a{color:#2f6fdc;word-break:break-all}
+
+.task{position:fixed;left:0;right:0;bottom:0;height:calc(36px + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);display:flex;align-items:stretch;z-index:1000;
+  background:linear-gradient(#3168d5,#4993e6 8%,#2157d7 20%,#245edb 80%,#1941a5)}
+.start{all:unset;cursor:pointer;display:flex;align-items:center;gap:6px;padding:0 20px 0 12px;color:#fff;font:italic 700 20px "Trebuchet MS",var(--ui);text-shadow:1px 1px 2px #000;border-radius:0 14px 14px 0;
+  background:linear-gradient(#5cb85c,#3c9c3c 15%,#2e8a2e 85%,#256f25);box-shadow:2px 0 4px rgba(0,0,0,.4)}
+.start:hover{filter:brightness(1.1)}
+.start:focus-visible{outline:2px dotted #fff;outline-offset:-4px}
+.apps{flex:1;display:flex;gap:3px;padding:3px 6px;overflow:hidden}
+.apps button{all:unset;cursor:pointer;min-width:0;max-width:170px;flex:1;padding:0 10px;color:#fff;font:12px/28px var(--ui);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-radius:3px;background:#3c81f3;box-shadow:inset 0 0 0 1px #1d4fc0}
+.apps button.on{background:#1e52b7;box-shadow:inset 1px 1px 3px #0b2a73}
+.tray{display:flex;align-items:center;padding:0 12px;color:#fff;font-size:12px;background:linear-gradient(#0fa0f0,#0b77d6);border-left:1px solid #0a4aa8}
+.menu{position:fixed;left:0;bottom:calc(36px + env(safe-area-inset-bottom,0px));width:290px;z-index:999;border:2px solid #1941a5;border-radius:8px 8px 0 0;overflow:hidden;box-shadow:3px -2px 10px rgba(0,0,0,.5);background:#fff;color:#000}
+.menu[hidden]{display:none}
+.menu header{padding:12px;background:linear-gradient(#1c63d8,#3a86ec);color:#fff;font:700 15px "Trebuchet MS",var(--ui);display:flex;gap:10px;align-items:center}
+.menu header b{display:grid;place-items:center;width:38px;height:38px;border:2px solid #fff;border-radius:4px;background:#e8a42c;font-size:20px}
+.menu button.it{all:unset;cursor:pointer;display:flex;gap:10px;align-items:center;width:100%;padding:7px 12px;font:13px var(--ui)}
+.menu button.it:hover,.menu button.it:focus-visible{background:#2f71cd;color:#fff}
+.menu button.it i{font-style:normal;font-size:22px;width:26px;text-align:center}
+.menu footer{padding:6px 10px;background:#4f8ee8;text-align:right}
+.menu footer button{all:unset;cursor:pointer;color:#fff;font:12px var(--ui);padding:3px 8px}
+.menu footer button:hover{text-decoration:underline}
+
+@media (max-width:719px){
+  .icons{position:static;flex-direction:row;flex-wrap:wrap;padding:12px 8px 0;justify-content:center}
+  .hero{position:static;text-align:center;padding:16px 16px 0}
+  .win{position:fixed;left:0!important;top:0!important;width:100%!important;height:calc(100% - 36px);max-height:none;border-radius:0}
+  .win .bt button[data-act=max]{display:none}
+  .dlg{margin:8px auto}
+}
+@media (prefers-reduced-motion:no-preference){.win:not(.hidden){animation:pop .12s ease-out}@keyframes pop{from{transform:scale(.97);opacity:.6}}}
+</style>
+</head>
+<body>
+<div class="desk" id="desk">
+  <div class="cloud" style="left:8%;top:14%;width:180px;height:34px"></div>
+  <div class="cloud" style="left:58%;top:26%;width:240px;height:40px"></div>
+
+  <nav class="icons" aria-label="Рабочий стол">
+    <button data-open="about"><i>📄</i>о_себе.txt</button>
+    <button data-open="skills"><i>🧠</i>Навыки</button>
+    <button data-open="proj"><i>📁</i>Проекты</button>
+    <button data-open="log"><i>🏆</i>Достижения</button>
+    <button data-open="contact"><i>✉️</i>Связь</button>
+  </nav>
+
+  <div class="hero">
+    <h1>Никита Садиков</h1>
+    <p>Первый курс ПМИ, ВШЭ, Санкт-Петербург.</p>
+  </div>
+
+  <section class="win hidden" id="about" style="left:150px;top:30px;width:440px">
+    <div class="tb"><span class="tt">о_себе.txt — Блокнот</span><span class="bt"><button data-act="min" aria-label="Свернуть">–</button><button data-act="max" aria-label="Развернуть">□</button><button data-act="close" class="x" aria-label="Закрыть">×</button></span></div>
+    <div class="bd"><div class="pane note">
+      <p>Родился в Калужской области, учился в физико-математическом лицее, теперь учусь на ПМИ в Санкт-Петербурге.</p>
+      <p>Почти всю жизнь играл в хоккей и в детстве мечтал попасть в НХЛ.</p>
+      <p>Теперь мечта другая: разобраться, как устроены нейросети, и научиться их обучать. Начинаю с математики, на ней всё и держится.</p>
+    </div></div>
+  </section>
+
+  <section class="win hidden" id="skills" style="left:220px;top:90px;width:460px">
+    <div class="tb"><span class="tt">Свойства: навыки</span><span class="bt"><button data-act="min" aria-label="Свернуть">–</button><button data-act="max" aria-label="Развернуть">□</button><button data-act="close" class="x" aria-label="Закрыть">×</button></span></div>
+    <div class="bd">
+      <div class="tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="t1">Уверенно</button>
+        <button role="tab" aria-selected="false" data-tab="t2">Учу сейчас</button>
+        <button role="tab" aria-selected="false" data-tab="t3">Хочу попробовать</button>
+      </div>
+      <div class="tp" id="t1" role="tabpanel"><ul>
+        <li>математика и физика на уровне физмат-лицея</li>
+        <li>командная игра: хоккей почти всю жизнь</li>
+        <li>Python и C++</li></ul></div>
+      <div class="tp" id="t2" role="tabpanel" hidden><ul>
+        <li>математический анализ: пределы последовательностей</li>
+        <li>программирование в рамках курса ПМИ</li></ul></div>
+      <div class="tp" id="t3" role="tabpanel" hidden><ul>
+        <li>машинное обучение</li>
+        <li>обучить свою первую нейросеть</li></ul></div>
+    </div>
+  </section>
+
+  <section class="win hidden" id="proj" style="left:170px;top:70px;width:480px">
+    <div class="tb"><span class="tt">Проекты</span><span class="bt"><button data-act="min" aria-label="Свернуть">–</button><button data-act="max" aria-label="Развернуть">□</button><button data-act="close" class="x" aria-label="Закрыть">×</button></span></div>
+    <div class="bd">
+      <div class="addr">Адрес: <span>C:\Мои документы\Проекты</span></div>
+      <div class="pane">
+        <div class="dlg" role="alertdialog" aria-label="Сообщение">
+          <div class="tb"><span class="tt">Проекты</span></div>
+          <div class="in"><div class="ic">⚠️</div>
+            <div><p>Проектов пока нет, и делать вид, что они есть, я не буду. Здесь появится первая нейросеть, которую я обучу сам.</p>
+            <button class="btn" data-act="close">ОК</button></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="win hidden" id="log" style="left:240px;top:50px;width:520px">
+    <div class="tb"><span class="tt">Достижения — Журнал событий</span><span class="bt"><button data-act="min" aria-label="Свернуть">–</button><button data-act="max" aria-label="Развернуть">□</button><button data-act="close" class="x" aria-label="Закрыть">×</button></span></div>
+    <div class="bd"><table>
+      <tr><th style="width:90px">Годы</th><th>Событие</th></tr>
+      <tr><td>2026</td><td>Поступление на ПМИ в ВШЭ, Санкт-Петербург.</td></tr>
+      <tr><td>13 лет</td><td>Хоккей. Выступал на уровне ЦФО.</td></tr>
+      <tr><td>Школа</td><td>Физико-математический лицей.</td></tr>
+    </table></div>
+  </section>
+
+  <section class="win hidden" id="contact" style="left:300px;top:110px;width:400px">
+    <div class="tb"><span class="tt">Новое сообщение</span><span class="bt"><button data-act="min" aria-label="Свернуть">–</button><button data-act="max" aria-label="Развернуть">□</button><button data-act="close" class="x" aria-label="Закрыть">×</button></span></div>
+    <div class="bd">
+      <p style="margin-top:0">Пишите, я отвечу:</p>
+      <div class="row"><label>Telegram:</label><span class="pane"><a href="https://t.me/nikitosinas_14" target="_blank" rel="noopener">@nikitosinas_14</a></span></div>
+      <div class="row"><label>Почта:</label><span class="pane"><a href="mailto:sadikovnikita827@gmail.com">sadikovnikita827@gmail.com</a></span></div>
+      <div class="row"><label>GitHub:</label><span class="pane"><a href="https://github.com/sadikovnikita827-dotcom" target="_blank" rel="noopener">github.com/sadikovnikita827-dotcom</a></span></div>
+    </div>
+  </section>
+</div>
+
+<div class="menu" id="menu" hidden>
+  <header><b>Н</b>Никита Садиков</header>
+  <button class="it" data-open="about"><i>📄</i>О себе</button>
+  <button class="it" data-open="skills"><i>🧠</i>Навыки</button>
+  <button class="it" data-open="proj"><i>📁</i>Проекты</button>
+  <button class="it" data-open="log"><i>🏆</i>Достижения</button>
+  <button class="it" data-open="contact"><i>✉️</i>Связь</button>
+  <footer><button id="off">Завершение работы</button></footer>
+</div>
+
+<div class="task">
+  <button class="start" id="start">пуск</button>
+  <div class="apps" id="apps"></div>
+  <div class="tray" id="clock"></div>
+</div>
+
+<script>
+(function(){
+  var z=10, apps=document.getElementById('apps'), menu=document.getElementById('menu');
+  var narrow=function(){return matchMedia('(max-width:719px)').matches};
+  function $(id){return document.getElementById(id)}
+  function btn(w){return apps.querySelector('[data-w="'+w.id+'"]')}
+  function focusWin(w){
+    document.querySelectorAll('.win').forEach(function(x){x.classList.add('off')});
+    w.classList.remove('off'); w.style.zIndex=++z;
+    apps.querySelectorAll('button').forEach(function(b){b.classList.toggle('on',b.dataset.w===w.id)});
+  }
+  function open(id){
+    var w=$(id); if(!w) return;
+    if(!btn(w)){
+      var b=document.createElement('button'); b.dataset.w=id; b.textContent=w.querySelector('.tt').textContent;
+      b.onclick=function(){ if(w.classList.contains('hidden')||w.classList.contains('off')){w.classList.remove('hidden');focusWin(w)} else {w.classList.add('hidden');b.classList.remove('on')} };
+      apps.appendChild(b);
+    }
+    w.classList.remove('hidden'); focusWin(w); menu.hidden=true;
+  }
+  function close(w){ w.classList.add('hidden'); var b=btn(w); if(b) b.remove(); }
+  document.addEventListener('click',function(e){
+    var o=e.target.closest('[data-open]'); if(o){open(o.dataset.open);return}
+    var a=e.target.closest('[data-act]');
+    if(a){
+      var w=a.closest('.win'), act=a.dataset.act;
+      if(act==='close') close(w);
+      if(act==='min'){ w.classList.add('hidden'); var b=btn(w); if(b) b.classList.remove('on'); }
+      if(act==='max') w.classList.toggle('max');
+      return;
+    }
+    var t=e.target.closest('[data-tab]');
+    if(t){
+      var box=t.closest('.bd');
+      box.querySelectorAll('[data-tab]').forEach(function(x){x.setAttribute('aria-selected',x===t)});
+      box.querySelectorAll('.tp').forEach(function(p){p.hidden=p.id!==t.dataset.tab});
+      return;
+    }
+    if(!e.target.closest('#menu')&&!e.target.closest('#start')) menu.hidden=true;
+  });
+  $('start').onclick=function(){menu.hidden=!menu.hidden};
+  $('off').onclick=function(){document.querySelectorAll('.win').forEach(close);menu.hidden=true};
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')menu.hidden=true});
+
+  document.querySelectorAll('.win').forEach(function(w){
+    w.addEventListener('pointerdown',function(){if(w.id&&btn(w))focusWin(w)});
+    var tb=w.querySelector('.tb'), sx, sy, ox, oy, drag=false;
+    tb.addEventListener('pointerdown',function(e){
+      if(e.target.closest('button')||narrow()||w.classList.contains('max'))return;
+      drag=true; sx=e.clientX; sy=e.clientY; ox=w.offsetLeft; oy=w.offsetTop; tb.setPointerCapture(e.pointerId);
+    });
+    tb.addEventListener('pointermove',function(e){
+      if(!drag)return;
+      w.style.left=Math.max(0,ox+e.clientX-sx)+'px';
+      w.style.top=Math.max(0,oy+e.clientY-sy)+'px';
+    });
+    tb.addEventListener('pointerup',function(){drag=false});
+  });
+
+  function tick(){ $('clock').textContent=new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}) }
+  tick(); setInterval(tick,20000);
+  if(!narrow()) open('about');
+})();
+</script>
+</body>
+</html>
